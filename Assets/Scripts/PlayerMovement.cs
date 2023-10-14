@@ -35,7 +35,17 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        moveDirection = new Vector2(moveX * speed, moveY * speed);
+        float moveSpeed;
+
+        //Compensation for move speed increase when moving diagonally
+        if((moveX!=0)&&(moveY!=0)){
+            moveSpeed = speed*0.75f;
+        }
+        else{
+            moveSpeed = speed;
+        }
+
+        moveDirection = new Vector2(moveX * moveSpeed, moveY * moveSpeed);
     }
 
     void Move()
