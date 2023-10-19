@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveDirection;
     private Animator anim; //TODO figure out how to use this
     public bool facingDown = true;
-    public bool facingRight = false;
+    public int leftOrRight = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -36,21 +36,32 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
+        bool isMoving;
+        
+        if(moveX==0&&moveY==0)
+            isMoving = false;
+        else
+            isMoving = true;
 
         moveDirection = new Vector2(moveX, moveY).normalized; //"normalized" because otherwise moving diagonally ends up faster
 
-        //Set booleans for direction facing
-        if(moveX<0)
-            facingRight = false;        
-        else if(moveX>0)
-            facingRight = true;
-        
+        //Set booleans for direction facing if moving (hold last if not moving)
 
-        if(moveY<0)
-            facingDown = true;        
-        else if(moveY>0)
-            facingDown = false;
+        if(isMoving){
+            //Horizontal directions
+            if(moveX<0)
+                leftOrRight = -1;        
+            else if(moveX>0)
+                leftOrRight = 1;
+            else
+                leftOrRight = 0;
 
+            //Vertical directions
+            if(moveY<0)
+                facingDown = true;        
+            else if(moveY>0)
+                facingDown = false;
+        }
     }
 
     void Move()
