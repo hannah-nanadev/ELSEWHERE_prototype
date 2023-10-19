@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D body;
     private Vector2 moveDirection;
     private Animator anim; //TODO figure out how to use this
-    public bool facingDown = true;
+    public int upOrDown = -1;
     public int leftOrRight = 0;
 
     // Start is called before the first frame update
@@ -36,18 +36,12 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-        bool isMoving;
-        
-        if(moveX==0&&moveY==0)
-            isMoving = false;
-        else
-            isMoving = true;
 
         moveDirection = new Vector2(moveX, moveY).normalized; //"normalized" because otherwise moving diagonally ends up faster
 
         //Set booleans for direction facing if moving (hold last if not moving)
 
-        if(isMoving){
+        if(checkMoving(moveX, moveY)){
             //Horizontal directions
             if(moveX<0)
                 leftOrRight = -1;        
@@ -58,9 +52,11 @@ public class PlayerMovement : MonoBehaviour
 
             //Vertical directions
             if(moveY<0)
-                facingDown = true;        
+                upOrDown = -1;        
             else if(moveY>0)
-                facingDown = false;
+                upOrDown = 1;
+            else
+                upOrDown = 0;
         }
     }
 
@@ -68,6 +64,14 @@ public class PlayerMovement : MonoBehaviour
     {
         body.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed); //Applies speed to normalized vector
         
+    }
+
+    bool checkMoving(float moveX, float moveY){
+        bool isMoving;        
+        if(moveX==0&&moveY==0)
+            return false;
+        else
+            return true;
     }
 
 }
