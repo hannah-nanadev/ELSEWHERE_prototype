@@ -44,11 +44,11 @@ public class PlayerMovement : MonoBehaviour
         if(checkMoving(moveX, moveY)){
             //Horizontal directions
             if(moveX<0)
-                leftOrRight = -1;        
+                anim.SetInteger("LeftorRight", -1);     
             else if(moveX>0)
-                leftOrRight = 1;
+                anim.SetInteger("LeftorRight", 1);
             else
-                leftOrRight = 0;
+                anim.SetInteger("LeftorRight", 0);
 
             //Vertical directions
             if(moveY<0)
