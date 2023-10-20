@@ -5,7 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Player Settings")]    
-    public float speed = 10f;
+    public float movementSpeed = 10f;
+
+    [Header("Gameplay Information")]
+    public bool isLeader = false;
 
     [Header("Other")]
     public Rigidbody2D body;
@@ -40,36 +43,39 @@ public class PlayerMovement : MonoBehaviour
         //Set booleans for direction facing if moving (hold last if not moving)
 
         if(checkMoving(moveX, moveY)){
-            //Horizontal directions
-            if(moveX<0)
-                anim.SetInteger("leftOrRight", -1);     
-            else if(moveX>0)
-                anim.SetInteger("leftOrRight", 1);
-            else
-                anim.SetInteger("leftOrRight", 0);
-
-            //Vertical directions
-            if(moveY<0)
-                anim.SetInteger("upOrDown", -1);     
-            else if(moveY>0)
-                anim.SetInteger("upOrDown", 1);
-            else
-                anim.SetInteger("upOrDown", 0);
+            setDirection(moveX, moveY);
         }
     }
 
     void Move()
     {
-        body.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed); //Applies speed to normalized vector
+        body.velocity = new Vector2(moveDirection.x * movementSpeed, moveDirection.y * movementSpeed); //Applies speed to normalized vector
         
     }
 
-    bool checkMoving(float moveX, float moveY){
-        bool isMoving;        
+    bool checkMoving(float moveX, float moveY){       
         if(moveX==0&&moveY==0)
             return false;
         else
             return true;
+    }
+
+    void setDirection(float x, float y){
+        //Horizontal directions
+        if(x<0)
+            anim.SetInteger("leftOrRight", -1);     
+        else if(x>0)
+            anim.SetInteger("leftOrRight", 1);
+        else
+            anim.SetInteger("leftOrRight", 0);
+
+        //Vertical directions
+        if(y<0)
+            anim.SetInteger("upOrDown", -1);     
+        else if(y>0)
+            anim.SetInteger("upOrDown", 1);
+        else
+            anim.SetInteger("upOrDown", 0);
     }
 
 }
