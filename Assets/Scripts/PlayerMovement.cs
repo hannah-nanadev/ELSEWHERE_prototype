@@ -11,8 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D body;
     private Vector2 moveDirection;
     private Animator anim; //TODO figure out how to use this
-    public int upOrDown = -1;
-    public int leftOrRight = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -44,19 +42,19 @@ public class PlayerMovement : MonoBehaviour
         if(checkMoving(moveX, moveY)){
             //Horizontal directions
             if(moveX<0)
-                anim.SetInteger("LeftorRight", -1);     
+                anim.SetInteger("leftOrRight", -1);     
             else if(moveX>0)
-                anim.SetInteger("LeftorRight", 1);
+                anim.SetInteger("leftOrRight", 1);
             else
-                anim.SetInteger("LeftorRight", 0);
+                anim.SetInteger("leftOrRight", 0);
 
             //Vertical directions
             if(moveY<0)
-                upOrDown = -1;        
+                anim.SetInteger("upOrDown", -1);     
             else if(moveY>0)
-                upOrDown = 1;
+                anim.SetInteger("upOrDown", 1);
             else
-                upOrDown = 0;
+                anim.SetInteger("upOrDown", 0);
         }
     }
 
