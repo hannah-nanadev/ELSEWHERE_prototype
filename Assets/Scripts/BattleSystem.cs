@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleManager : MonoBehaviour
+public class BattleSystem : MonoBehaviour
 {
     public bool inBattle = false;
     
@@ -16,5 +16,11 @@ public class BattleManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    //Main battle loop
+    public void InitiateBattle()
+    {
+        inBattle = true;
     }
 }

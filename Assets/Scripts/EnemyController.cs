@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public Rigidbody2D body;
-    BattleManager battleSystem;
+    public BattleSystem battleController;
 
     public float movementRange = 2.5f;
     private bool canChangeDirection = true;
@@ -25,12 +25,15 @@ public class EnemyController : MonoBehaviour
 
     //Enemy movement - Paused if in battle
     void Move()
-    {
-        if(canChangeDirection)
-        {       
-            Vector2 direction = new Vector2(Random.Range(-movementRange, movementRange), Random.Range(-movementRange, movementRange));
-            body.velocity = direction;
-            StartCoroutine(StopAndWait());
+    {   
+        if(!battleController.inBattle)
+        {
+            if(canChangeDirection)
+            {       
+                Vector2 direction = new Vector2(Random.Range(-movementRange, movementRange), Random.Range(-movementRange, movementRange));
+                body.velocity = direction;
+                StartCoroutine(StopAndWait());
+            }
         }
     }
 
@@ -41,5 +44,14 @@ public class EnemyController : MonoBehaviour
         body.velocity = new Vector2(0, 0);
         yield return new WaitForSeconds(1f);
         canChangeDirection = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+        if(player!=null)
+        {
+            battleController.InitiateBattle();
+        }
     }
 }

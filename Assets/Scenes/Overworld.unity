@@ -3198,6 +3198,7 @@ GameObject:
   - component: {fileID: 1040580071}
   - component: {fileID: 1040580070}
   - component: {fileID: 1040580072}
+  - component: {fileID: 1040580073}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -3349,7 +3350,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 1040580071}
+  battleController: {fileID: 1741178712}
   movementRange: 2.5
+--- !u!114 &1040580073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040580067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c420fc212fe4e8f4f93a86ef0c2a3fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveset: 000000000000000000000000
 --- !u!1 &1045843742
 GameObject:
   m_ObjectHideFlags: 0
@@ -3365,6 +3380,7 @@ GameObject:
   - component: {fileID: 1045843746}
   - component: {fileID: 1045843748}
   - component: {fileID: 1045843749}
+  - component: {fileID: 1045843750}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3506,7 +3522,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045843742}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -3540,6 +3556,7 @@ MonoBehaviour:
   movementSpeed: 6.5
   isLeader: 1
   body: {fileID: 1045843747}
+  battleController: {fileID: 1741178712}
 --- !u!114 &1045843749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3560,6 +3577,26 @@ MonoBehaviour:
   baseSpeed: 4
   growthFunction: 1
   level: 1
+  currentEXP: 0
+  cHP: 0
+  cAtk: 0
+  cMag: 0
+  cDef: 0
+  cMDef: 0
+  cSpd: 0
+--- !u!114 &1045843750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045843742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c420fc212fe4e8f4f93a86ef0c2a3fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveset: 000000000000000000000000
 --- !u!1 &1243241499
 GameObject:
   m_ObjectHideFlags: 0

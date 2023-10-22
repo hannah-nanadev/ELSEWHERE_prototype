@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stats : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
     //Default base stats - changeable in editor for objects
     [Header("Base Stats (at level 1)")]

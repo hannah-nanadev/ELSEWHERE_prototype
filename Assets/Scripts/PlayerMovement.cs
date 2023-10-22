@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Other")]
     public Rigidbody2D body;
+    public BattleSystem battleController;
     private Vector2 moveDirection;
     private Animator anim; //TODO figure out how to use this
 
@@ -48,9 +49,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Move()
-    {
+    {  
+        if(!battleController.inBattle)
+        {
         body.velocity = new Vector2(moveDirection.x * movementSpeed, moveDirection.y * movementSpeed); //Applies speed to normalized vector
-        
+        }        
     }
 
     bool checkMoving(float moveX, float moveY){       
